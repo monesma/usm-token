@@ -8,9 +8,9 @@ import "@openzeppelin/contracts/utils/Pausable.sol";
 
 contract Usm is ERC20, Ownable, ReentrancyGuard, Pausable {
     // Constants
-    uint256 private constant MAX_BURN_RATE = 1000; // 100%
+    uint256 private constant MAX_BURN_RATE = 100; // 100%
     uint256 private constant MIN_BURN_AMOUNT = 1;
-    uint256 public constant MAX_SUPPLY = 2_000_000_000 * 10**18;
+    uint256 public constant MAX_SUPPLY = 50_000_000_000 * 10**18;
     uint256 public constant MINT_COOLDOWN = 30 days;
     uint256 public constant TIMELOCK_DURATION = 2 days; // 48-hour timelock
 
@@ -45,8 +45,8 @@ contract Usm is ERC20, Ownable, ReentrancyGuard, Pausable {
     event BurnRateProposed(uint256 proposedBurnRate, uint256 effectiveTime);
     event TransferWithBurnToggled(bool enabled);
 
-    constructor() ERC20("Unified Social Markets", "USM") Ownable(msg.sender) {
-        _mint(address(this), 1_000_000_000 * (10 ** decimals()));
+    constructor() ERC20("Unified Social Markets", "$USM") Ownable(msg.sender) {
+        _mint(address(this), 10_000_000_000 * (10 ** decimals()));
         lastMintTime = block.timestamp;
     }
 
