@@ -16,11 +16,11 @@ describe("USM Token Tests", function () {
   describe("Deployment", function () {
     it("Should deploy the contract with correct initial values", async function () {
       expect((await contract.read.owner()).toLowerCase()).to.equal(owner.account.address.toLowerCase());
-      expect(await contract.read.totalSupply()).to.equal(parseEther("1000000000"));
+      expect(await contract.read.totalSupply()).to.equal(parseEther("10000000000"));
       expect(Number(await contract.read.burnRate())).to.equal(0);
       expect(await contract.read.isTransferWithBurnEnabled()).to.be.false;
       expect(await contract.read.paused()).to.be.false;
-      expect(await contract.read.MAX_SUPPLY()).to.equal(parseEther("2000000000"));
+      expect(await contract.read.MAX_SUPPLY()).to.equal(parseEther("50000000000"));
       expect(Number(await contract.read.MINT_COOLDOWN())).to.equal(30 * 24 * 60 * 60);
       expect(Number(await contract.read.TIMELOCK_DURATION())).to.equal(2 * 24 * 60 * 60);
     });
@@ -28,9 +28,9 @@ describe("USM Token Tests", function () {
     it("Should have correct token info", async function () {
       const tokenInfo = await contract.read.getTokenInfo();
       expect(tokenInfo.name).to.equal("Unified Social Markets");
-      expect(tokenInfo.symbol).to.equal("USM");
+      expect(tokenInfo.symbol).to.equal("$USM");
       expect(tokenInfo.decimals).to.equal(18);
-      expect(tokenInfo.totalSupply).to.equal(parseEther("1000000000"));
+      expect(tokenInfo.totalSupply).to.equal(parseEther("10000000000"));
       expect(tokenInfo.isTransferWithBurnEnabled).to.be.false;
       expect(Number(tokenInfo.burnRate)).to.equal(0);
       expect(tokenInfo.paused).to.be.false;
@@ -308,7 +308,7 @@ describe("Token Transfers", function () {
     it("should not exceed max supply", async function () {
       await hre.network.provider.send("evm_increaseTime", [31 * 24 * 60 * 60]);
       
-      await expect(contract.write.mint([parseEther("1500000000")])).to.be.rejected;
+      await expect(contract.write.mint([parseEther("41000000000")])).to.be.rejected;
     });
   });
 
