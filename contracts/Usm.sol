@@ -151,7 +151,7 @@ contract Usm is ERC20, Ownable, ReentrancyGuard, Pausable {
     function transfer(
         address to,
         uint256 amount
-    ) public override nonReentrant whenNotPaused returns (bool) {
+    ) public override whenNotPaused returns (bool) {
         require(amount > 0, "Amount must be greater than zero");
 
         (
@@ -180,7 +180,7 @@ contract Usm is ERC20, Ownable, ReentrancyGuard, Pausable {
         address from,
         address to,
         uint256 amount
-    ) public override nonReentrant whenNotPaused returns (bool) {
+    ) public override whenNotPaused returns (bool) {
         require(amount > 0, "Amount must be greater than zero");
 
         uint256 currentAllowance = allowance(from, msg.sender);
